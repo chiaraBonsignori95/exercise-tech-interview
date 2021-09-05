@@ -1,0 +1,16 @@
+Problem:
+- components:
+    - industrial machine with data gathering unit (linux-based industrial machine):
+        - collect data and forward to relational DB
+    - relational DB
+- requirements:
+    - avoid data loss 
+    - avoid duplicates
+- task:
+    - design logic of linux pc
+    - design DB insertion queries
+
+Solution:
+- data gathering unit samples data with a given period (configurable and adjustable over time)
+- relational DB hosted somewhere on the Cloud or on a server of the company 
+-  
