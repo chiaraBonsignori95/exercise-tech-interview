@@ -1,0 +1,19 @@
+API Description
+
+POST to "/checklist": add new checklist (with "id", "name", "user", todo = [])
+GET to "/checklist/findbyUser": retrieve checklists by user
+POST to "/checklist/addTodo": update a checklist by adding a new TODO (with "description", "done" = false)
+POST to "/checklist/updateTodo": update a checklist by marking a TODO as done ("done" = true) or not done ("done" = false)
+DELETE to "/checklist": delete a checklist (with all TODOs marked as done)
+
+# INSTRUCTIONS
+
+Build and start server (in "server/" directory):
+    npm run-script build
+    npm run-script start
+
+Build and start client (in "client/" directory):
+    npm run-script build
+    npm run-script start
+
+

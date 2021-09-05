@@ -1,0 +1,16 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Checklist server",
+    "main": "server.js",
+    "license": "ISC",
+    "dependencies": {
+        "express": "4.17.1",
+        "mongodb": "4.1.1",
+        "winston": "3.3.3"
+    },
+    "scripts": {
+        "build": "npm install",
+        "start": "node server.js"
+    }
+}
