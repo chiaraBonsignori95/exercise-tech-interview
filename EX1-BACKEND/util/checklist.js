@@ -19,7 +19,7 @@ module.exports = class Checklist {
     toString() {
         let s = `Checklist "${this.name}" of user "${this.user}" with TODOs: [`;
         this.todo.forEach(t => {
-            s = s + ` "${t.description}" = ${t.done}`
+            s = s + ` "${t.description}" = ${t.done ? "done" : "not done"} `
         });
         s = s + " ]"
 

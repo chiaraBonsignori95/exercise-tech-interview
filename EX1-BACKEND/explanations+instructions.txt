@@ -1,0 +1,26 @@
+# REST API Description
+
+POST to "/checklist": add new checklist (with "name", "user", "todo" = [] in request body)
+GET to "/checklist/findbyUser": retrieve checklists by user (with "user" in query string)
+POST to "/checklist/addTodo": update a checklist by adding a new TODO (with "name", "user" and "description" in body)
+POST to "/checklist/updateTodo": update a checklist by marking a TODO as done ("done" = true) or not done ("done" = false) (with "name", "user", "description" and "todo" in body)
+DELETE to "/checklist": delete a checklist with all TODOs marked as done (with "name" and "user" in query string)
+
+
+
+# INSTRUCTIONS
+Start MongoDB 
+    sudo systemctl start mongod
+    
+Import database "ChecklistServiceDB" with "checklists" collection from "db.json" file (in "./")
+    mongoimport --db ChecklistServiceDB --collection checklists --drop --file ./db.json
+
+Build and start server (in "./server/" directory):
+    npm run-script build
+    npm run-script start
+
+Build and start client (in "./client/" directory):
+    npm run-script build
+    npm run-script start
+
+The database after the client execution must contain the same elements as at the beginning

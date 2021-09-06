@@ -1,9 +1,7 @@
 const axios = require("axios");
-const url = require("url")
 const path = require("path");
 const winston = require("winston");
 const Checklist = require("../util/checklist");
-const Todo = require("../util/todo");
 
 const logger = winston.createLogger({
     format: winston.format.combine(
@@ -48,7 +46,7 @@ async function addChecklist(checklist) {
 
 // add new TODO to checklist of the user
 async function addTodo(name, user, description) {
-    logger.info(`Send POST request to add TODO to checklist "${name}" of user "${user}"`);
+    logger.info(`Send POST request to add TODO "${description}"" to checklist "${name}" of user "${user}"`);
 
     // send POST request
     try {
@@ -65,7 +63,7 @@ async function addTodo(name, user, description) {
 
 // update TODO of the checklist of the user
 async function updateTodo(name, user, description, done) {
-    logger.info(`Send POST request to mark as ${done ? "done" : "not done"} TODO ${description} of checklist "${name}" of user "${user}"`);
+    logger.info(`Send POST request to mark as ${done ? "done" : "not done"} TODO "${description}"" of checklist "${name}" of user "${user}"`);
 
     // send POST request
     try {
@@ -81,6 +79,7 @@ async function updateTodo(name, user, description, done) {
     }
 }
 
+// delete a checklist of a user
 async function deleteChecklist(name, user) {
     logger.info(`Send DELETE request to delete checklist "${name}" of user "${user}"`);
 

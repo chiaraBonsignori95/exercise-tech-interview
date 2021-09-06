@@ -1,0 +1,2 @@
+{"_id":{"$oid":"61320988836ad8e58dcff4ee"},"name":"Work Checklist","user":"Chiara","todo":[{"description":"Call manager","done":false},{"description":"Fix meeting","done":false}]}
+{"_id":{"$oid":"61320988836ad8e58dcff4ef"},"name":"Home Checklist","user":"Andrea","todo":[{"description":"Pay taxes","done":false}]}

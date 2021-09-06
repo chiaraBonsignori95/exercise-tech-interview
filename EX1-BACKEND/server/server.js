@@ -1,5 +1,4 @@
 const express = require("express");
-const fs = require("fs")
 const path = require("path");
 const winston = require("winston");
 const { MongoClient } = require("mongodb");
@@ -20,7 +19,7 @@ const logger = winston.createLogger({
 const port = 3000;
 
 // database info
-const mongodbName = "ChecklistsApp"
+const mongodbName = "ChecklistServiceDB"
 const mongodbUri = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
 const mongodbClient = new MongoClient(mongodbUri);
 
@@ -36,7 +35,6 @@ connectDb().then((checklistsCollection) => {
     // create application
     let app = express();
 
-
     app.use(express.json());
 
     // configure POST action for endpoint "/checklist" to add a new checklist
@@ -45,19 +43,19 @@ connectDb().then((checklistsCollection) => {
         let checklist = new Checklist(req.body.name, req.body.user, req.body.todo);
         logger.info(`Receive POST request to insert new checklist "${checklist.name}" for user "${checklist.user}"`);
 
-        checklistsCollection.insertOne(checklist).then(result => {
+        checklistsCollection.insertOne(checklist).then( () => {
             res.send(JSON.stringify(checklist));
         });
     });
 
     // configure GET action for endpoint "/checklist/findByUser" to retrieve checklists
-    app.get(`/checklist/findByUser`, (req, res) => {
+    app.get(`/checklist/findByUser`, async (req, res) => {
         // retrieve user from request
         let user = req.query.user, userChecklists = new Array();
         logger.info(`Receive GET request to retrieve checklists for user "${user}"`);
 
         // search checklists of the user in the database
-        checklistsCollection.find({ user: user }).forEach(checklist => {
+        checklistsCollection.find({ user: user }).forEach(checklist => {;
             userChecklists.push(new Checklist(checklist.name, checklist.user, checklist.todo));
         }).then(() => {
             res.json(userChecklists);
@@ -73,7 +71,7 @@ connectDb().then((checklistsCollection) => {
             let checklist = new Checklist(checklistDocument.name, checklistDocument.user, checklistDocument.todo);
             checklist.addTodo(new Todo(req.body.description));
 
-            checklistsCollection.replaceOne({ name: req.body.name, user: req.body.user }, checklist).then(result => {
+            checklistsCollection.replaceOne({ name: req.body.name, user: req.body.user }, checklist).then(() => {
                 res.send(JSON.stringify(checklist));
             });
         });
@@ -88,7 +86,7 @@ connectDb().then((checklistsCollection) => {
             let checklist = new Checklist(checklistDocument.name, checklistDocument.user, checklistDocument.todo);
             checklist.markTodo(req.body.description, req.body.done);
 
-            checklistsCollection.replaceOne({ name: req.body.name, user: req.body.user }, checklist).then(result => {
+            checklistsCollection.replaceOne({ name: req.body.name, user: req.body.user }, checklist).then(() => {
                 res.send(JSON.stringify(checklist));
             });
         });
