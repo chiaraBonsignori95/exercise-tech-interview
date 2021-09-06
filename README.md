@@ -1,1 +1,1 @@
-# Zerynth-tech-interview
+# exercise-tech-interview
